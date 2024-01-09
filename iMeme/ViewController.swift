@@ -34,7 +34,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   
   func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
     if let image = info[.editedImage] as? UIImage {
-      //do something
+      picker.dismiss(animated: true)
+      showFirstText()
     }
     
     dismiss(animated: true)
@@ -47,6 +48,20 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     
     ac.addTextField { textField in
       textField.placeholder = "Enter text"
+    }
+    
+    ac.addAction(UIAlertAction(title: "Done", style: .default) { [weak self, ac] action in
+      self?.showSecondText()
+    })
+    
+    present(ac, animated: true)
+  }
+  
+  private func showSecondText() {
+    let ac = UIAlertController(title: "Enter More Text", message: "Enter some more text for the meme", preferredStyle: .alert)
+    
+    ac.addTextField { textField in
+      textField.placeholder = "Enter more text"
     }
     
     ac.addAction(UIAlertAction(title: "Done", style: .default) { [weak self, ac] action in
