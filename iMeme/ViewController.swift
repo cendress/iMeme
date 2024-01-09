@@ -26,5 +26,14 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     picker.sourceType = .photoLibrary
     present(picker, animated: true)
   }
+  
+  //MARK: - UIImagePicker delegate methods
+  
+  func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+    if let image = info[.editedImage] as? UIImage {
+      //do something with the edited image
+    }
+    
+    dismiss(animated: true)
+  }
 }
-
