@@ -14,6 +14,8 @@ enum TextPosition {
 class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
   @IBOutlet weak var imageView: UIImageView!
   var selectedImage: UIImage?
+  var topText: String?
+  var bottomText: String?
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -47,33 +49,21 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     dismiss(animated: true)
   }
   
-  //MARK: - UIAlert methods
+  //MARK: - UIAlert method
   
-  private func showFirstText() {
-    let ac = UIAlertController(title: "Enter Some Text", message: "Enter some text for the meme", preferredStyle: .alert)
-    
-    ac.addTextField { textField in
-      textField.placeholder = "Enter text"
-    }
-    
-    ac.addAction(UIAlertAction(title: "Done", style: .default) { [weak self, ac] action in
-      self?.showSecondText()
+  private func presentTextAlert(for position: TextPosition) {
+    let title = position == .top ? "Enter Top Text" : "Enter Bottom Text"
+    let ac = UIAlertController(title: title, message: nil, preferredStyle: .alert)
+    ac.addTextField()
+    ac.addAction(UIAlertAction(title: "Done", style: .default) { [weak self, weak ac] _ in
+      let text = ac?.textFields?.first?.text
+      if position == .top {
+        self?.topText = text
+      } else {
+        self?.bottomText = text
+      }
+      self?.renderMeme()
     })
-    
-    present(ac, animated: true)
-  }
-  
-  private func showSecondText() {
-    let ac = UIAlertController(title: "Enter More Text", message: "Enter some more text for the meme", preferredStyle: .alert)
-    
-    ac.addTextField { textField in
-      textField.placeholder = "Enter more text"
-    }
-    
-    ac.addAction(UIAlertAction(title: "Done", style: .default) { [weak self, ac] action in
-      //do something once you get the text
-    })
-    
     present(ac, animated: true)
   }
   
@@ -83,7 +73,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     let renderer = UIGraphicsImageRenderer(size: CGSize(width: 250, height: 250))
     
     let image = renderer.image { context in
-     
+      
     }
     
     imageView.image = image
