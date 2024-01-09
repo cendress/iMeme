@@ -20,7 +20,10 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
+    let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
+    let share = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareTapped))
+    
+    navigationItem.rightBarButtonItems = [add, share]
     
     self.title = "iMeme"
     navigationController?.navigationBar.prefersLargeTitles = true
@@ -28,6 +31,10 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   
   @objc func addTapped() {
     presentImagePicker()
+  }
+  
+  @objc func shareTapped() {
+    
   }
   
   private func presentImagePicker() {
