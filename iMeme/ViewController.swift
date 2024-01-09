@@ -68,6 +68,16 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     present(ac, animated: true)
   }
   
+  //MARK: - IBActions
+  
+  @IBAction func setTopTextTapped(_ sender: Any) {
+          presentTextAlert(for: .top)
+      }
+
+      @IBAction func setBottomTextTapped(_ sender: Any) {
+          presentTextAlert(for: .bottom)
+      }
+  
   //MARK: - Core graphics method
   
   private func renderMeme() {
