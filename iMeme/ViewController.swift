@@ -12,7 +12,12 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    view.backgroundColor = .brown
+    
     navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
+    
+    self.title = "iMeme"
+    navigationController?.navigationBar.prefersLargeTitles = true
   }
   
   @objc func addTapped() {
@@ -30,9 +35,9 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   //MARK: - UIImagePicker delegate methods
   
   func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-    if let image = info[.editedImage] as? UIImage {
-      //do something with the edited image
-    }
+//    if let image = info[.editedImage] as? UIImage {
+//      //do something with the edited image
+//    }
     
     dismiss(animated: true)
   }
