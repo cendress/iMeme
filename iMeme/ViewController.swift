@@ -56,7 +56,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     let ac = UIAlertController(title: title, message: nil, preferredStyle: .alert)
     ac.addTextField()
     ac.addAction(UIAlertAction(title: "Done", style: .default) { [weak self, weak ac] _ in
-      let text = ac?.textFields?.first?.text
+      guard let text = ac?.textFields?.first?.text else { return }
+
       if position == .top {
         self?.topText = text
       } else {
