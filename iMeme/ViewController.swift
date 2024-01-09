@@ -8,6 +8,7 @@
 import UIKit
 
 class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+  @IBOutlet weak var imageView: UIImageView!
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -22,7 +23,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     presentImagePicker()
   }
   
-  func presentImagePicker() {
+  private func presentImagePicker() {
     let picker = UIImagePickerController()
     picker.delegate = self
     picker.allowsEditing = true
@@ -41,7 +42,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     dismiss(animated: true)
   }
   
-  //MARK: - Other methods
+  //MARK: - UIAlert methods
   
   private func showFirstText() {
     let ac = UIAlertController(title: "Enter Some Text", message: "Enter some text for the meme", preferredStyle: .alert)
@@ -69,5 +70,11 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     })
     
     present(ac, animated: true)
+  }
+  
+  //MARK: - Core graphics method
+  
+  private func renderMeme() {
+    let renderer = UIGraphicsImageRenderer(size: CGSize(width: 250, height: 250))
   }
 }
