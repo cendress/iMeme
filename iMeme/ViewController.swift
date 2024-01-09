@@ -9,6 +9,7 @@ import UIKit
 
 class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
   @IBOutlet weak var imageView: UIImageView!
+  var selectedImage: UIImage?
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -76,5 +77,11 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   
   private func renderMeme() {
     let renderer = UIGraphicsImageRenderer(size: CGSize(width: 250, height: 250))
+    
+    let image = renderer.image { context in
+     
+    }
+    
+    imageView.image = image
   }
 }
