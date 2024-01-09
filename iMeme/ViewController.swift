@@ -102,11 +102,11 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
       paragraphStyle.alignment = .center
       
       let attrs: [NSAttributedString.Key: Any] = [
-        .font: UIFont.systemFont(ofSize: 40),
+        .font: UIFont.boldSystemFont(ofSize: 50),
         .paragraphStyle: paragraphStyle,
         .foregroundColor: UIColor.white,
         .strokeColor: UIColor.black,
-        .strokeWidth: -3.0
+        .strokeWidth: -4.0
       ]
       
       if let topText = self.topText, !topText.isEmpty {
