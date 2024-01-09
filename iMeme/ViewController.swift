@@ -34,7 +34,10 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   }
   
   @objc func shareTapped() {
+    guard let image = imageView.image else { return }
     
+    let activityController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+    present(activityController, animated: true)
   }
   
   private func presentImagePicker() {
