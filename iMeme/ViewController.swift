@@ -57,7 +57,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     ac.addTextField()
     ac.addAction(UIAlertAction(title: "Done", style: .default) { [weak self, weak ac] _ in
       guard let text = ac?.textFields?.first?.text else { return }
-
+      
       if position == .top {
         self?.topText = text
       } else {
@@ -71,20 +71,41 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   //MARK: - IBActions
   
   @IBAction func setTopTextTapped(_ sender: Any) {
-          presentTextAlert(for: .top)
-      }
-
-      @IBAction func setBottomTextTapped(_ sender: Any) {
-          presentTextAlert(for: .bottom)
-      }
+    presentTextAlert(for: .top)
+  }
+  
+  @IBAction func setBottomTextTapped(_ sender: Any) {
+    presentTextAlert(for: .bottom)
+  }
   
   //MARK: - Core graphics method
   
   private func renderMeme() {
-    let renderer = UIGraphicsImageRenderer(size: CGSize(width: 250, height: 250))
+    guard let selectedImage = selectedImage else { return }
     
+    let renderer = UIGraphicsImageRenderer(size: selectedImage.size)
     let image = renderer.image { context in
+      selectedImage.draw(at: CGPoint.zero)
+      let paragraphStyle = NSMutableParagraphStyle()
+      paragraphStyle.alignment = .center
       
+      let attrs: [NSAttributedString.Key: Any] = [
+        .font: UIFont.systemFont(ofSize: 40),
+        .paragraphStyle: paragraphStyle,
+        .foregroundColor: UIColor.white,
+        .strokeColor: UIColor.black,
+        .strokeWidth: -3.0
+      ]
+      
+      if let topText = self.topText, !topText.isEmpty {
+        let attributedString = NSAttributedString(string: topText, attributes: attrs)
+        attributedString.draw(with: CGRect(x: 0, y: 20, width: selectedImage.size.width, height: 60), options: .usesLineFragmentOrigin, context: nil)
+      }
+      
+      if let bottomText = self.bottomText, !bottomText.isEmpty {
+        let attributedString = NSAttributedString(string: bottomText, attributes: attrs)
+        attributedString.draw(with: CGRect(x: 0, y: selectedImage.size.height - 80, width: selectedImage.size.width, height: 60), options: .usesLineFragmentOrigin, context: nil)
+      }
     }
     
     imageView.image = image
