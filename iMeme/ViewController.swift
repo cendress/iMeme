@@ -36,8 +36,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   
   func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
     if let image = info[.editedImage] as? UIImage {
-      picker.dismiss(animated: true)
-      showFirstText()
+      selectedImage = image
+      imageView.image = image
     }
     
     dismiss(animated: true)
