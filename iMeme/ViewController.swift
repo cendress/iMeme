@@ -20,6 +20,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    view.backgroundColor = .systemIndigo
+    
     let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
     let share = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareTapped))
     
