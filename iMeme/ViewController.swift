@@ -111,15 +111,20 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
       
       if let topText = self.topText, !topText.isEmpty {
         let attributedString = NSAttributedString(string: topText, attributes: attrs)
-        attributedString.draw(with: CGRect(x: 0, y: 20, width: selectedImage.size.width, height: 60), options: .usesLineFragmentOrigin, context: nil)
+        let stringSize = attributedString.size()
+        let stringRect = CGRect(x: 0, y: 20, width: selectedImage.size.width, height: stringSize.height)
+        attributedString.draw(in: stringRect)
       }
       
       if let bottomText = self.bottomText, !bottomText.isEmpty {
         let attributedString = NSAttributedString(string: bottomText, attributes: attrs)
-        attributedString.draw(with: CGRect(x: 0, y: selectedImage.size.height - 80, width: selectedImage.size.width, height: 60), options: .usesLineFragmentOrigin, context: nil)
+        let stringSize = attributedString.size()
+        let stringRect = CGRect(x: 0, y: selectedImage.size.height - stringSize.height - 20, width: selectedImage.size.width, height: stringSize.height)
+        attributedString.draw(in: stringRect)
       }
     }
     
     imageView.image = image
   }
+  
 }
