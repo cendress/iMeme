@@ -7,6 +7,10 @@
 
 import UIKit
 
+enum TextPosition {
+  case top, bottom
+}
+
 class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
   @IBOutlet weak var imageView: UIImageView!
   var selectedImage: UIImage?
