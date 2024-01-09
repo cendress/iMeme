@@ -16,7 +16,15 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   }
   
   @objc func addTapped() {
-    
+    presentImagePicker()
+  }
+  
+  func presentImagePicker() {
+    let picker = UIImagePickerController()
+    picker.delegate = self
+    picker.allowsEditing = true
+    picker.sourceType = .photoLibrary
+    present(picker, animated: true)
   }
 }
 
